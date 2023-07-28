@@ -24,6 +24,9 @@ export class Supplier {
   })
   code_prefix: string;
 
+  @Column('int')
+  percentage: number;
+
   @OneToMany(() => Product, (product) => product.supplier)
   products: Product[];
 
