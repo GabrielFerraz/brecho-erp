@@ -26,6 +26,12 @@ export class Product {
   code: string;
 
   @Column('float')
+  min_price: number;
+
+  @Column('float')
+  max_price: number;
+
+  @Column('float')
   purchase_price: number;
 
   @Column('float')
