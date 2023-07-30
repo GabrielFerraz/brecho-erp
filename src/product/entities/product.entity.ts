@@ -1,17 +1,22 @@
 import {
-  Column, CreateDateColumn, DeleteDateColumn,
-  Entity, JoinTable,
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinTable,
   ManyToMany,
   ManyToOne,
-  PrimaryGeneratedColumn, UpdateDateColumn
-} from "typeorm";
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { Supplier } from '../../suppliers/entities/supplier.entity';
 import { Category } from '../../category/entities/category.entity';
 import { Tag } from '../../tags/entities/tag.entity';
 import { Brand } from '../../brands/entities/brand.entity';
 
 @Entity()
-export class Product {
+export class Product extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -43,6 +48,9 @@ export class Product {
   @ManyToOne(() => Supplier, (supplier) => supplier.products)
   supplier: Supplier;
 
+  @ManyToOne(() => Brand, (brand) => brand.products)
+  brand: Brand;
+
   @ManyToMany(() => Category, (category) => category.products)
   @JoinTable()
   categories: Category[];
@@ -50,10 +58,6 @@ export class Product {
   @ManyToMany(() => Tag, (tags) => tags.products)
   @JoinTable()
   tags: Tag[];
-
-  @ManyToMany(() => Brand, (brand) => brand.products)
-  @JoinTable()
-  brands: Brand[];
 
   @CreateDateColumn()
   created_at: string;
