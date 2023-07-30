@@ -1,16 +1,18 @@
 import {
+  BaseEntity,
   Column,
-  CreateDateColumn, DeleteDateColumn,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   JoinTable,
   ManyToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
-} from "typeorm";
+  UpdateDateColumn,
+} from 'typeorm';
 import { Product } from '../../product/entities/product.entity';
 
 @Entity()
-export class Tag {
+export class Tag extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

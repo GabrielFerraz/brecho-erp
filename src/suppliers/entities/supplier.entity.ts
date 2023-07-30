@@ -1,16 +1,17 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
-} from "typeorm";
+  UpdateDateColumn,
+} from 'typeorm';
 import { Product } from '../../product/entities/product.entity';
 
 @Entity()
-export class Supplier {
+export class Supplier extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

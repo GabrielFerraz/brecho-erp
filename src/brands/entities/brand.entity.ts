@@ -1,16 +1,17 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
-} from "typeorm";
+  UpdateDateColumn,
+} from 'typeorm';
 import { Product } from '../../product/entities/product.entity';
 
 @Entity()
-export class Brand {
+export class Brand extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -19,7 +20,7 @@ export class Brand {
   })
   name: string;
 
-  @ManyToMany(() => Product, (product) => product.brands)
+  @OneToMany(() => Product, (product) => product.brand)
   products: Product[];
 
   @CreateDateColumn()
