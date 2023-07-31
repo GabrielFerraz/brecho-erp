@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from "@nestjs/common";
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -41,8 +41,18 @@ export class ProductService {
     return Product.save(product);
   }
 
-  findAll() {
-    return Product.find();
+  findAll(page: number) {
+    Logger.log('page', page);
+    return Product.find({
+      relations: {
+        brand: true,
+        categories: true,
+        tags: true,
+        supplier: true,
+      },
+      take: 10,
+      skip: 10 * (page - 1),
+    });
   }
 
   findOne(id: number) {

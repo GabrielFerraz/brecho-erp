@@ -51,6 +51,36 @@ export class Product extends BaseEntity {
   @ManyToOne(() => Brand, (brand) => brand.products)
   brand: Brand;
 
+  @Column({
+    type: 'datetime',
+    nullable: true,
+  })
+  date_bought: string;
+
+  @Column({
+    type: 'datetime',
+    nullable: true,
+  })
+  date_sold: string;
+
+  @Column({
+    type: 'tinyint',
+    default: 0,
+  })
+  has_faults: number;
+
+  @Column({
+    type: 'text',
+    nullable: true,
+  })
+  observations: number;
+
+  @Column({
+    type: 'text',
+    nullable: true,
+  })
+  description: number;
+
   @ManyToMany(() => Category, (category) => category.products)
   @JoinTable()
   categories: Category[];

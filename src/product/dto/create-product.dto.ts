@@ -6,6 +6,11 @@ export class CreateProductDto {
   min_price?: number;
   max_price?: number;
   weight: number;
+  date_bought: string;
+  date_sold: string;
+  has_faults: number;
+  observations: string;
+  description: string;
   supplier: number;
   brand?: number;
   categories?: number[];
